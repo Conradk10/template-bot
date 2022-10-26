@@ -23,10 +23,5 @@ async def cb_close(callback_query: types.CallbackQuery):
 
 
 @dp.callback_query_handler(lambda c: c.data and c.data.startswith('none'))
-async def cb_close(callback_query: types.CallbackQuery):
-    await callback_query.answer()
-
-
-@dp.callback_query_handler(lambda c: c.data and c.data.startswith('none'))
-async def cb_close(callback_query: types.CallbackQuery):
+async def cb_none(callback_query: types.CallbackQuery):
     await callback_query.answer()

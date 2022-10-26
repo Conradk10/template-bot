@@ -2,18 +2,15 @@ import asyncio
 import aioschedule
 
 from loader import dp
-from aiohttp import web
+# from aiohttp import web
 from loguru import logger
-from schedule import do_payday, do_checkout
-from webapp.handlers import app
+# from webapp.handlers import app
 from aiogram.utils import executor
 from utils.db.sqliter import connection
 
 
 async def scheduler():
     """ Расписание """
-    aioschedule.every().hour.at(':00').do(do_payday)    # Пейдей каждый час
-    aioschedule.every().day.at('21:30').do(do_checkout)     # Каждый день банковский чек
 
     while True:
         await aioschedule.run_pending()
@@ -35,8 +32,8 @@ async def on_startup(dispatcher: dp):
     import handlers
     import keyboards
 
-    asyncio.create_task(web._run_app(app, host="0.0.0.0", port=5001))
-    asyncio.create_task(scheduler())
+    # asyncio.create_task(web._run_app(app, host="0.0.0.0", port=5001))
+    # asyncio.create_task(scheduler())
 
 
 async def on_shutdown(dispatcher: dp):
